@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+      role: frontend
+  template:
+    metadata:
+      labels:
+        app: my-app
+        role: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: HTTP_PORT
+          value: "80"
